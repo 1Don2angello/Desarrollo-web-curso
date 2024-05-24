@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -11,9 +11,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -35,8 +37,40 @@
 
 .card {
   padding: 2em;
+  background-color: #1E2A38; /* Fondo oscuro para la tarjeta */
+  color: white; /* Texto blanco para mayor legibilidad */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+  margin: 1em 0; /* Espacio alrededor de las tarjetas */
 }
 
 .read-the-docs {
   color: #888;
+  margin-top: 2em; /* Espacio antes del texto de documentos */
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 1024px) { /* Para tablets */
+  #root {
+    padding: 2rem;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+}
+
+@media (max-width: 768px) { /* Para móviles */
+  #root {
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 4em; /* Logos más pequeños en dispositivos móviles */
+  }
+
+  .card {
+    padding: 1em;
+    margin: 0.5em 0;
+  }
 }

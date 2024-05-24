@@ -1,0 +1,30 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.game-card {
+    background-color: #2D4159;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.releases-section, .offers-section {
+    background-color: #24334B;
+    padding: 20px;
+    border-radius: 5px;
+}
