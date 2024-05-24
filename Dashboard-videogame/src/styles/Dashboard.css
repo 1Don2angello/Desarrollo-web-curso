@@ -1,16 +1,16 @@
 /* Base styling for the dashboard */
 .dashboard {
     display: grid;
-    grid-template-columns: repeat(12, 1fr); /* Define a 12-column grid */
+    grid-template-columns: repeat(12, 1fr);
     gap: 20px;
     padding: 20px;
-    color: #ffffff; /* White text color for readability */
-    background-color: #24333B; /* Dark background for the dashboard */
+    color: #ffffff;
+    background-color: #121212;
 }
 
-/* Styling for the main featured content */
-.main-content {
-    grid-column: span 9; /* Take up 9 out of 12 columns */
+/* Featured games section */
+.featured-game-section {
+    grid-column: span 9;
     background-color: #24334B;
     padding: 20px;
     border-radius: 10px;
@@ -20,9 +20,9 @@
     align-items: center;
 }
 
-/* Styling for the news section */
-.news-section {
-    grid-column: span 3; /* Take up 3 out of 12 columns */
+/* News section */
+.news-feed-section {
+    grid-column: span 3;
     background-color: #1E2A38;
     padding: 20px;
     border-radius: 10px;
@@ -31,42 +31,16 @@
     gap: 10px;
 }
 
-/* Responsive adjustments for tablets */
-@media (max-width: 1024px) {
-    .dashboard {
-        grid-template-columns: 1fr; /* Single column layout on tablet */
-    }
-
-    .main-content, .news-section {
-        grid-column: 1 / -1; /* Make each section take full width */
-    }
-}
-
-/* Responsive adjustments for mobile phones */
-@media (max-width: 768px) {
-    .dashboard {
-        flex-direction: column;
-    }
-
-    .main-content, .news-section {
-        width: 100%; /* Each section takes full width */
-        order: 1; /* Ensures main content is at the top */
-    }
-
-    .news-section {
-        order: 2; /* News section comes after the main content */
-    }
-}
-
-/* Additional styling for game sections */
-.games-section {
+/* Grid of games within the featured games section */
+.featured-games {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
+/* Individual game card styling */
 .game-card {
-    background-color: #1e2a38 ;
+    background-color: #24333B;
     padding: 10px;
     border-radius: 10px;
     text-align: center;
@@ -78,10 +52,25 @@
     border-radius: 5px;
 }
 
-.news-item {
-    background: #1e2a38;
-    padding: 10px;
-    border-radius: 5px;
-    color: white;
-    font-size: 0.9em;
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+    .featured-game-section, .news-feed-section {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+    .featured-game-section, .news-feed-section {
+        width: 100%;
+        order: 1;
+    }
+    .news-feed-section {
+        order: 2;
+    }
 }
