@@ -1,10 +1,10 @@
 // StaticFeaturedGame.tsx
 import React from 'react';
 
-const StaticFeaturedGame: React.FC = () => {
+const Staticoffers: React.FC = () => {
   return (
     <div className="main-feature">
-      <h2>Estreno</h2>
+      <h2>Ofertas</h2>
       <div className="games-section">
         {/* Ejemplo con múltiples juegos */}
         <div className="game-card">
@@ -46,4 +46,4 @@ const StaticFeaturedGame: React.FC = () => {
   );
 };
 
-export default StaticFeaturedGame;
+export default Staticoffers;
