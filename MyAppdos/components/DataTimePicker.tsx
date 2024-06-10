@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView,ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Picker } from '@react-native-picker/picker'; // Asegúrate de instalar esta dependencia
-import pomodoroOptions from "../components/pomodoro/pomodoroOptions"; // Asegúrate de que la ruta y el archivo son correctos
+import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Picker } from '@react-native-picker/picker'; // Ensure this dependency is installed
+import pomodoroOptions from "../components/pomodoro/pomodoroOptions"; // Ensure the path and file are correct
 
-// Asumiendo que defines un tipo para las opciones del Pomodoro
 interface PomodoroOption {
-    id: number;  // Asegúrate de que esto sea `number` si así lo manejas
+    id: number;
     focusTime: number;
     breakTime: number;
 }
 
-
 const DataTimePicker = () => {
-    const [selectedPomodoro, setSelectedPomodoro] = useState<PomodoroOption>(pomodoroOptions[0]);// Inicializar con la primera opción
+    const [selectedPomodoro, setSelectedPomodoro] = useState<PomodoroOption>(pomodoroOptions[0]);
     const [isRunning, setIsRunning] = useState(false);
     const [timer, setTimer] = useState(0);
 
@@ -39,7 +37,12 @@ const DataTimePicker = () => {
 
     const handleStartStop = () => {
         setIsRunning(!isRunning);
-        if (!isRunning) setTimer(0); // Resetear el temporizador al iniciar
+        // No reset timer on start/stop
+    };
+
+    const handleReset = () => {
+        setIsRunning(false);
+        setTimer(0); // Reset the timer to 0
     };
 
     const formatTime = () => {
@@ -47,7 +50,6 @@ const DataTimePicker = () => {
         const seconds = timer % 60;
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
-
 
     return (
         <SafeAreaView style={styles.container}>
@@ -66,6 +68,9 @@ const DataTimePicker = () => {
                 </View>
                 <TouchableOpacity style={styles.button} onPress={handleStartStop}>
                     <Text style={styles.buttonText}>{isRunning ? 'Pause' : 'Start'}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={handleReset}>
+                    <Text style={styles.buttonText}>Reset</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
@@ -93,11 +98,13 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: 'blue',
         padding: 10,
-        borderRadius: 5
+        borderRadius: 5,
+        marginTop: 10
     },
     buttonText: {
         color: 'white',
         fontSize: 20
     }
 });
+
 export default DataTimePicker;
