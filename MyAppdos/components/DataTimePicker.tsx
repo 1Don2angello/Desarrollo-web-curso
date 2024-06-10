@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { SafeAreaView,ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Picker } from '@react-native-picker/picker'; // Asegúrate de instalar esta dependencia
 import pomodoroOptions from "../components/pomodoro/pomodoroOptions"; // Asegúrate de que la ruta y el archivo son correctos
 
+// Asumiendo que defines un tipo para las opciones del Pomodoro
+interface PomodoroOption {
+    id: number;  // Asegúrate de que esto sea `number` si así lo manejas
+    focusTime: number;
+    breakTime: number;
+}
+
+
 const DataTimePicker = () => {
-    const [selectedPomodoro, setSelectedPomodoro] = useState(pomodoroOptions[0]); // Inicializar con la primera opción
+    const [selectedPomodoro, setSelectedPomodoro] = useState<PomodoroOption>(pomodoroOptions[0]);// Inicializar con la primera opción
     const [isRunning, setIsRunning] = useState(false);
     const [timer, setTimer] = useState(0);
 
@@ -40,23 +48,26 @@ const DataTimePicker = () => {
         return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     };
 
+
     return (
         <SafeAreaView style={styles.container}>
-            <Picker
-                selectedValue={selectedPomodoro}
-                onValueChange={(itemValue, itemIndex) => setSelectedPomodoro(pomodoroOptions[itemIndex])}
-                style={{ width: 200, height: 180 }}
-            >
-                {pomodoroOptions.map(option => (
-                    <Picker.Item key={option.id} label={`${option.focusTime} min focus, ${option.breakTime} min break`} value={option} />
-                ))}
-            </Picker>
-            <View style={styles.timerContainer}>
-                <Text style={styles.timerText}>{formatTime()}</Text>
-            </View>
-            <TouchableOpacity style={styles.button} onPress={handleStartStop}>
-                <Text style={styles.buttonText}>{isRunning ? 'Pause' : 'Start'}</Text>
-            </TouchableOpacity>
+            <ScrollView contentContainerStyle={styles.scrollView}>
+                <Picker
+                    selectedValue={selectedPomodoro}
+                    onValueChange={(itemValue: PomodoroOption, itemIndex: number) => setSelectedPomodoro(pomodoroOptions[itemIndex])}
+                    style={{ width: 200, height: 180 }}
+                >
+                    {pomodoroOptions.map(option => (
+                        <Picker.Item key={option.id} label={`${option.focusTime} min focus, ${option.breakTime} min break`} value={option} />
+                    ))}
+                </Picker>
+                <View style={styles.timerContainer}>
+                    <Text style={styles.timerText}>{formatTime()}</Text>
+                </View>
+                <TouchableOpacity style={styles.button} onPress={handleStartStop}>
+                    <Text style={styles.buttonText}>{isRunning ? 'Pause' : 'Start'}</Text>
+                </TouchableOpacity>
+            </ScrollView>
         </SafeAreaView>
     );
 };
@@ -67,6 +78,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#f5f5f5'
+    },
+    scrollView: {
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     timerContainer: {
         margin: 20
@@ -85,5 +100,4 @@ const styles = StyleSheet.create({
         fontSize: 20
     }
 });
-
 export default DataTimePicker;
