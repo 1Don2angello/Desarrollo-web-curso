@@ -5,6 +5,7 @@ import {Alumnos} from '../../components/Alumnos';
 import {Materias} from '../../components/Materias';
 import {Noticias} from '../../components/Noticias';
 import {Eventos} from '../../components/Eventos';
+import DataTimePicker from '../../components/DataTimePicker';
 const Stack = createStackNavigator();
 
 export default function HomeScreen() {
@@ -15,6 +16,7 @@ export default function HomeScreen() {
       <Stack.Screen name='Materias'  component={Materias} />
       <Stack.Screen name='Noticias'  component={Noticias} />
       <Stack.Screen name='Eventos'  component={Eventos} />
+      <Stack.Screen name='DataTimePicker' component={DataTimePicker}/>
     </Stack.Navigator>
   );
 

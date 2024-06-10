@@ -5,7 +5,7 @@ export function Eventos({navigation}:any) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text style={{ fontSize: 24, fontWeight: 'bold', color: 'black' }}>
-                Esto es una pestaña en blanco
+                Esto es una pestaña en blanco 2
             </Text>
         </View>
     );
