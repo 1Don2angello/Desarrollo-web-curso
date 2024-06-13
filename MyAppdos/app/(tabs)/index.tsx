@@ -11,12 +11,12 @@ const Stack = createStackNavigator();
 export default function HomeScreen() {
   return (
     <Stack.Navigator initialRouteName="Bienvenido">
-      <Stack.Screen name='Bienvenido' component={ThemedText} /> 
-      <Stack.Screen name='Alumnos'  component={Alumnos} />
-      <Stack.Screen name='Materias'  component={Materias} />
-      <Stack.Screen name='Noticias'  component={Noticias} />
-      <Stack.Screen name='Eventos'  component={Eventos} />
-      <Stack.Screen name='DataTimePicker' component={DataTimePicker}/>
+      <Stack.Screen name='Bienvenido' component={ThemedText} options={{headerShown:false}} /> 
+      <Stack.Screen name='Alumnos'  component={Alumnos}  options={{headerShown:false}}/>
+      <Stack.Screen name='Materias'  component={Materias}  options={{headerShown:false}}/>
+      <Stack.Screen name='Noticias'  component={Noticias}  options={{headerShown:false}}/>
+      <Stack.Screen name='Eventos'  component={Eventos}  options={{headerShown:false}}/>
+      <Stack.Screen name='DataTimePicker' component={DataTimePicker}  options={{headerShown:false}}/>
     </Stack.Navigator>
   );
 
