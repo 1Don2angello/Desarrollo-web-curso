@@ -14,14 +14,13 @@ Markdown para un cuadro comparativo:
 
 ### Descripción de algunos Hooks de React
 
-```markdown
 ### `useState`
 
 - **Descripción**: Permite añadir estado reactivo a componentes funcionales.
 - **Ejemplo de Uso**:
   ```jsx
   const [count, setCount] = useState(0);
-  ```
+
 
 ### `useEffect`
 
