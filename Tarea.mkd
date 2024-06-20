@@ -4,14 +4,13 @@ Comparación entre `useState` y `useReducer` y descripción de los hooks en form
 
 Markdown para un cuadro comparativo:
 
-```markdown
 | Hook        | `useState`                                        | `useReducer`                                                  |
 |-------------|---------------------------------------------------|---------------------------------------------------------------|
-| Uso   | Manejar estado local simple.                      | Manejar estado local más complejo con lógica de actualización.|
+| **Uso**     | Manejar estado local simple.                      | Manejar estado local más complejo con lógica de actualización.|
 | **Cuándo**  | Para valores de estado simples como números, strings, booleanos. | Para estados que contienen múltiples sub-valores o cuando la próxima actualización del estado depende del anterior. |
 | **Retorna** | Retorna un par de valores: el estado actual y una función que permite actualizarlo. | Retorna el estado actual y un `dispatch` función para enviar una acción a la función reductora. |
 | **Ventajas**| Simple y fácil de usar para lógicas sencillas.    | Más escalable para manejar estados complejos, permite manejar acciones relacionadas al estado de forma más organizada. |
-```
+
 
 ### Descripción de algunos Hooks de React
 
