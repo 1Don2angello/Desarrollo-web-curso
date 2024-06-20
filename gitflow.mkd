@@ -1,0 +1,88 @@
+Aquí te presento un ejemplo modificado de tus apuntes, utilizando tu repositorio de ejemplo para ilustrar cómo trabajarías con Git Flow:
+
+```markdown
+# **Comandos básicos de git-flow con Ejemplo**
+
+Aquí tienes un ejemplo práctico usando el repositorio de ejemplo `ejemplo1` en GitHub.
+
+## Clonar Repositorio
+
+Primero, clona el repositorio desde GitHub:
+
+```bash
+git clone https://github.com/1Don2angello/ejemplo1.git
+cd ejemplo1
+```
+
+## Iniciar Git Flow en el Repositorio
+
+Inicializa Git Flow en el repositorio clonado. Esto establecerá las ramas `develop` y `main` si aún no existen:
+
+```bash
+git flow init
+# Sigue las instrucciones y acepta los nombres predeterminados para las ramas.
+```
+
+## Trabajar con Features
+
+Para trabajar en una nueva característica:
+
+```bash
+git flow feature start nombre-caracteristica
+# Realiza cambios necesarios en tu proyecto.
+git add .
+git commit -m "Añadiendo nueva característica"
+# Finaliza la feature, esto fusionará la rama de la característica a `develop`
+git flow feature finish nombre-caracteristica
+```
+
+## Preparar un Release
+
+Cuando estés listo para hacer un release (por ejemplo, una nueva versión de tu aplicación):
+
+```bash
+git flow release start v1.0
+# Puedes realizar ajustes finales o preparar tu proyecto para la producción
+git commit -m "Preparando release v1.0"
+# Finaliza el release, esto fusionará `release` a `main` y `develop`
+git flow release finish v1.0
+```
+
+## Publicar Cambios
+
+Después de finalizar una feature o release, asegúrate de subir los cambios a tus ramas remotas:
+
+```bash
+git push origin develop
+git push origin main
+git push --tags  # Si has creado etiquetas durante el release
+```
+
+## Manejo de Hotfixes
+
+Si necesitas hacer un hotfix (correcciones urgentes directamente en producción):
+
+```bash
+git flow hotfix start nombre-hotfix
+# Corrige los errores.
+git add .
+git commit -m "Correcciones urgentes aplicadas"
+git flow hotfix finish nombre-hotfix
+```
+
+## Resumen de comandos utilizados
+
+```plaintext
+git clone https://github.com/1Don2angello/ejemplo1.git
+cd ejemplo1
+git flow init
+git flow feature start/add/finish
+git flow release start/finish
+git flow hotfix start/finish
+git push origin [branch]
+```
+
+Estos pasos te ayudarán a gestionar tu proyecto utilizando Git Flow, facilitando el manejo de características, releases y correcciones de forma estructurada y eficiente.
+```
+
+Este conjunto de comandos e instrucciones ofrece una guía completa y práctica adaptada a tu flujo de trabajo y repositorio de ejemplo, facilitando tu preparación para cualquier situación práctica o examen relacionado con Git Flow.
