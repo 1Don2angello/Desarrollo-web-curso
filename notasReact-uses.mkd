@@ -1,0 +1,71 @@
+Claro, aquí tienes una versión mejorada y más detallada de tus apuntes sobre el hook `useReducer` en React:
+
+---
+
+### useReducer
+
+`useReducer` es un hook de React que se utiliza para manejar el estado complejo en componentes funcionales. Es particularmente útil cuando tienes múltiples sub-valores o cuando el próximo estado depende del anterior. `useReducer` también es preferible cuando el estado lógico de la aplicación es complejo debido a múltiples valores que pueden cambiar en respuestas a diferentes acciones.
+
+#### Estructura Básica
+```javascript
+const [state, dispatch] = useReducer(reducer, initialState, init);
+```
+
+- **state**: Valor actual del estado mantenido por el reducer.
+- **dispatch**: Método para despachar acciones que modifican el estado.
+- **reducer**: Función que determina los cambios en el estado basado en la acción recibida.
+- **initialState**: Estado inicial del reducer.
+- **init**: Función opcional que se puede usar para lazy initialize el estado inicial.
+
+#### Componentes del useReducer
+
+- **Reducer**: Una función que recibe el estado actual y una acción, y devuelve un nuevo estado. La forma de la función es:
+  ```javascript
+  function reducer(state, action) {
+      switch (action.type) {
+          case 'ACTION_TYPE':
+              return newState;
+          default:
+              return state;
+      }
+  }
+  ```
+
+- **Action**: Un objeto que describe cómo cambiar el estado, típicamente tiene un campo `type` y puede tener otros datos.
+
+#### Ejemplo: Contador con useReducer
+
+```javascript
+import React, { useReducer } from 'react';
+
+function reducer(state, action) {
+    switch (action.type) {
+        case 'increment':
+            return { count: state.count + 1 };
+        case 'decrement':
+            return { count: state.count - 1 };
+        default:
+            throw new Error();
+    }
+}
+
+function Counter() {
+    const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+    return (
+        <>
+            Count: {state.count}
+            <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+            <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+        </>
+    );
+}
+
+export default Counter;
+```
+
+Este ejemplo muestra un contador simple donde el estado es actualizado en respuesta a dos tipos de acciones: incrementar y decrementar. Cada vez que un botón es presionado, se despacha la acción correspondiente que ajusta el contador.
+
+---
+
+Espero que esta versión mejorada de tus apuntes te sea útil para entender y aplicar `useReducer` de manera efectiva en tus proyectos de React.
