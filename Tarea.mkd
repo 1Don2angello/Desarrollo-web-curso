@@ -1,0 +1,72 @@
+Comparación entre `useState` y `useReducer` y te proporciono una descripción de los hooks en formato Markdown.
+
+### Comparación entre `useState` y `useReducer`
+
+Markdown para un cuadro comparativo:
+
+```markdown
+| Hook        | `useState`                                        | `useReducer`                                                  |
+|-------------|---------------------------------------------------|---------------------------------------------------------------|
+| **Uso**     | Manejar estado local simple.                      | Manejar estado local más complejo con lógica de actualización.|
+| **Cuándo**  | Para valores de estado simples como números, strings, booleanos. | Para estados que contienen múltiples sub-valores o cuando la próxima actualización del estado depende del anterior. |
+| **Retorna** | Retorna un par de valores: el estado actual y una función que permite actualizarlo. | Retorna el estado actual y un `dispatch` función para enviar una acción a la función reductora. |
+| **Ventajas**| Simple y fácil de usar para lógicas sencillas.    | Más escalable para manejar estados complejos, permite manejar acciones relacionadas al estado de forma más organizada. |
+```
+
+### Descripción de algunos Hooks de React
+
+```markdown
+### `useState`
+
+- **Descripción**: Permite añadir estado reactivo a componentes funcionales.
+- **Ejemplo de Uso**:
+  ```jsx
+  const [count, setCount] = useState(0);
+  ```
+
+### `useEffect`
+
+- **Descripción**: Permite realizar efectos secundarios en componentes funcionales.
+- **Ejemplo de Uso**:
+  ```jsx
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  }, [count]); // Solo se reejecuta si `count` cambia
+  ```
+
+### `useContext`
+
+- **Descripción**: Permite subscribirse a React context sin introducir anidamiento.
+- **Ejemplo de Uso**:
+  ```jsx
+  const value = useContext(MyContext);
+  ```
+
+### `useReducer`
+
+- **Descripción**: Alternativa a `useState` para estados más complejos.
+- **Ejemplo de Uso**:
+  ```jsx
+  const [state, dispatch] = useReducer(reducer, initialArg, init);
+  ```
+
+### `useMemo`
+
+- **Descripción**: Memoriza el resultado de una función.
+- **Ejemplo de Uso**:
+  ```jsx
+  const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+  ```
+
+### `useCallback`
+
+- **Descripción**: Retorna una versión memorizada de un callback.
+- **Ejemplo de Uso**:
+  ```jsx
+  const memoizedCallback = useCallback(() => {
+    doSomething(a, b);
+  }, [a, b]);
+  ```
+```
+
+Este contenido te ayudará a estudiar y también puede ser útil como referencia rápida para tus proyectos y exámenes.
