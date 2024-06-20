@@ -66,5 +66,3 @@ Markdown para un cuadro comparativo:
   }, [a, b]);
   ```
 ```
-
-Este contenido te ayudará a estudiar y también puede ser útil como referencia rápida para tus proyectos y exámenes.
