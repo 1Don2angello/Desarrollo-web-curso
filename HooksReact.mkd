@@ -55,14 +55,14 @@ function Componente() {
 > :point_right: [¿Sabías que compilar un componente de tipo clase es más trabajo para Babel?](https://platzi.com/blog/necesitamos-saber-react-avanzado/)
 > :point_right: [¿Cuándo crear un Componente? Estructura, Organización y Tipos de Componentes en React](https://platzi.com/blog/estructura-organizacion-y-tipos-de-componentes-en-react/)
 
-## Proyecto
+<!-- ## Proyecto
 
 Nuestro proyecto será una caja de confirmación con los siguientes requerimientos:
 
 - **Código de seguridad**: el usuario debe escribir la contraseña “secreta” para confirmar que quiere realizar la eliminación.
 - **Botón de comprobar, mensajes de cargando y error**: cuando el usuario escriba la contraseña debe darle clic al botón de comprobar el código. Este botón simulara una solicitud a alguna API. Mientras carga, debemos mostrar un mensaje de “cargando”. Y si el código es incorrecto, debemos pedirle al usuario que lo intente de nuevo.
 - **Ultra confirmación**: si el código es correcto, dejamos de mostrar el campo donde el usuario escribe la contraseña y le preguntamos si está seguro de que quiere realizar la eliminación. El usuario tiene la opción de cancelar y volver a la pantalla anterior. O también puede confirmar definitivamente.
-- **Eliminado**: cuando el usuario haya pasado por todo este proceso debe poder recuperar el estado anterior haciendo clic en un botón que diga “¡me arrepiento, devuelvanme al estado anterior!”.
+- **Eliminado**: cuando el usuario haya pasado por todo este proceso debe poder recuperar el estado anterior haciendo clic en un botón que diga “¡me arrepiento, devuelvanme al estado anterior!”. -->
 
 
 
