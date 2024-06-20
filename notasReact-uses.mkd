@@ -67,5 +67,3 @@ export default Counter;
 Este ejemplo muestra un contador simple donde el estado es actualizado en respuesta a dos tipos de acciones: incrementar y decrementar. Cada vez que un botón es presionado, se despacha la acción correspondiente que ajusta el contador.
 
 ---
-
-Espero que esta versión mejorada de tus apuntes te sea útil para entender y aplicar `useReducer` de manera efectiva en tus proyectos de React.
