@@ -1,4 +1,4 @@
-Comparación entre `useState` y `useReducer` y descripción de los hooks en formato Markdown.
+Diferencia entre `useState` y `useReducer` y descripción de los hooks en formato Markdown.
 
 ### Comparación entre `useState` y `useReducer`
 
