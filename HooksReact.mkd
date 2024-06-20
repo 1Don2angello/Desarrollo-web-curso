@@ -70,6 +70,83 @@ Nuestro proyecto será una caja de confirmación con los siguientes requerimient
 
 Primero nos encargaremos de la UI. Luego añadiremos la lógica y el estado a nuestro componente.
 
-...
+Aquí tienes ejemplos de cómo utilizar algunos de los Hooks más comunes en React:
+
+### Ejemplo de `useState`
+`useState` es perfecto para manejar estados simples dentro de tus componentes. Aquí está cómo podrías usarlo para manejar el contador de clics en un botón:
+
+```jsx
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+### Ejemplo de `useEffect`
+`useEffect` se utiliza para realizar efectos secundarios en componentes funcionales, como solicitudes de red, suscripciones o manipulaciones manuales del DOM que deben realizarse después de que se renderiza el componente.
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function UserGreeting(props) {
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    // Simulamos la carga de datos
+    setTimeout(() => {
+      setUsername('Visitante');
+    }, 1000); // Carga el nombre después de 1 segundo
+  }, []); // El array vacío asegura que el efecto solo se ejecuta una vez
+
+  return <h1>Bienvenido, {username}</h1>;
+}
+
+export default UserGreeting;
+```
+
+### Ejemplo de `useReducer`
+`useReducer` es útil cuando tienes lógicas de estado complejas que involucran múltiples sub-valores o cuando el próximo estado depende del anterior de una manera más compleja que simplemente incrementar o decrementar un valor.
+
+```jsx
+import React, { useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <>
+      Count: {state.count}
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+    </>
+  );
+}
+
+export default Counter;
+```
+
 
 Puedes leer el resto del tutorial en: https://platzi.com/blog/usestate-vs-usereducer.
