@@ -1,0 +1,181 @@
+Claro, aquí tienes tus apuntes completados y estructurados:
+
+### Lazy Loading Combinado con Escuchadores de Eventos
+
+**Concepto:**
+Lazy loading combinado con escuchadores de eventos es una técnica poderosa para mejorar el rendimiento de una aplicación. Lazy loading permite cargar componentes o datos solo cuando son necesarios, en lugar de cargar todo de una vez. Esto se combina con escuchadores de eventos para detectar cuándo cargar estos componentes o datos, como cuando un usuario se desplaza por una página.
+
+**Ejemplo de Configurar `react.lazy`:**
+`react.lazy` se utiliza para cargar componentes de manera diferida. Aquí tienes un ejemplo:
+
+```jsx
+import React, { Suspense } from 'react';
+
+// Componente cargado de manera diferida
+const LazyComponent = React.lazy(() => import('./LazyComponent'));
+
+const App = () => (
+  <div>
+    <Suspense fallback={<div>Loading...</div>}>
+      <LazyComponent />
+    </Suspense>
+  </div>
+);
+
+export default App;
+```
+
+### Intersection Observer API
+
+**Concepto:**
+El Intersection Observer API permite ejecutar una función cuando un elemento (target) entra o sale del viewport (la parte visible de la página). Esto es útil para implementar lazy loading y otras optimizaciones de rendimiento.
+
+**Implementación en el Componente Padre:**
+Aquí tienes dos ejemplos de cómo implementar el Intersection Observer API en un componente de React.
+
+**Ejemplo 1:**
+
+```jsx
+import React, { useEffect, useRef } from 'react';
+
+const LazyImage = ({ src, alt }) => {
+  const imgRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          imgRef.current.src = src;
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(imgRef.current);
+
+    return () => observer.disconnect();
+  }, [src]);
+
+  return <img ref={imgRef} alt={alt} />;
+};
+
+export default LazyImage;
+```
+
+**Ejemplo 2:**
+
+```jsx
+import React, { useEffect, useRef } from 'react';
+
+const LazyComponent = () => {
+  const componentRef = useRef();
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Aquí puedes cargar el componente o ejecutar alguna acción
+            console.log('Component is visible');
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observer.observe(componentRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={componentRef} style={{ height: '200px', background: 'lightblue' }}>Lazy Component</div>;
+};
+
+export default LazyComponent;
+```
+
+### `useRef`
+
+**Concepto:**
+`useRef` es un hook de React que te permite crear una referencia mutable que no causa una nueva renderización cuando cambia. Se usa para acceder directamente a un DOM node o para mantener un valor persistente entre renderizaciones.
+
+**Uso:**
+
+```jsx
+import React, { useRef } from 'react';
+
+const MyComponent = () => {
+  const inputRef = useRef();
+
+  const focusInput = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus Input</button>
+    </div>
+  );
+};
+
+export default MyComponent;
+```
+
+**Ventajas:**
+- Al utilizar una ref, te aseguras que el valor persistente no cause una nueva renderización.
+- Útil para manejar foco, seleccionar texto, o reproducir/pausar medios.
+
+### Props en React
+
+**Concepto:**
+En React, las props (abreviatura de "properties") son argumentos que se pasan a los componentes de React. Son como los parámetros de una función en JavaScript, y permiten que los componentes sean reutilizables y configurables.
+
+**Implementación:**
+
+```jsx
+import React from 'react';
+
+const Greeting = (props) => {
+  return <h1>Hello, {props.name}!</h1>;
+};
+
+const App = () => {
+  return <Greeting name="World" />;
+};
+
+export default App;
+```
+
+**Usos Adecuados:**
+- Props se utilizan para pasar datos y funciones a los componentes.
+- Deben ser inmutables dentro del componente.
+- Permiten componer y reutilizar componentes de manera eficiente.
+
+**Guía Simple de Props en React:**
+- **JSX:** Sintaxis similar a XML para describir la UI.
+- **Components:** Funciones o clases que retornan elementos de React.
+- **Output:** HTML generado por los componentes.
+
+```jsx
+import React from 'react';
+
+const MyComponent = ({ title, children }) => (
+  <div>
+    <h1>{title}</h1>
+    <div>{children}</div>
+  </div>
+);
+
+const App = () => (
+  <MyComponent title="Hello World">
+    <p>This is a child component</p>
+  </MyComponent>
+);
+
+export default App;
+```
+
+Espero que estos apuntes te sean útiles. Si necesitas más detalles o tienes alguna otra pregunta, no dudes en decírmelo.
