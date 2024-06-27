@@ -1,0 +1,65 @@
+### Diferencias entre `useMemo` y `useCallback`
+
+#### `useMemo`
+
+- **Propósito:** Memorizar el resultado de una función.
+- **Uso:** Se utiliza para evitar cálculos costosos en cada renderización.
+- **Sintaxis:**
+
+  ```jsx
+  const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+  ```
+
+- **Ejemplo:**
+
+  ```jsx
+  import React, { useMemo } from 'react';
+
+  const MyComponent = ({ a, b }) => {
+    const memoizedValue = useMemo(() => {
+      // Cálculo costoso
+      return a + b;
+    }, [a, b]);
+
+    return <div>{memoizedValue}</div>;
+  };
+  ```
+
+#### `useCallback`
+
+- **Propósito:** Memorizar una función.
+- **Uso:** Se utiliza para evitar la recreación de funciones en cada renderización.
+- **Sintaxis:**
+
+  ```jsx
+  const memoizedCallback = useCallback(() => {
+    doSomething(a, b);
+  }, [a, b]);
+  ```
+
+- **Ejemplo:**
+
+  ```jsx
+  import React, { useCallback } from 'react';
+
+  const MyComponent = ({ a, b }) => {
+    const memoizedCallback = useCallback(() => {
+      // Función costosa o que se pasa como prop
+      console.log(a, b);
+    }, [a, b]);
+
+    return <button onClick={memoizedCallback}>Click me</button>;
+  };
+  ```
+
+### Cuadro con las Descripciones de los Hooks
+
+| Hook      | Descripción                                                                                      | Ejemplo                                                                                                                  |
+|-----------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| `useMemo` | Memoriza el resultado de una función para evitar cálculos costosos en cada renderización.         | `const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);`                                              |
+| `useCallback` | Memoriza una función para evitar que sea recreada en cada renderización.                      | `const memoizedCallback = useCallback(() => { doSomething(a, b); }, [a, b]);`                                            |
+
+### Explicación Visual
+
+- **`useMemo`:** Piensa en `useMemo` como un contenedor que guarda el resultado de un cálculo costoso y solo lo recalcula cuando cambian las dependencias.
+- **`useCallback`:** Piensa en `useCallback` como un contenedor que guarda una función y solo la recrea cuando cambian las dependencias.
