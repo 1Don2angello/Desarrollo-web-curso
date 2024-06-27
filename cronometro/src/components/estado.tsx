@@ -1,53 +1,35 @@
-import  { useReducer, useCallback, useMemo } from 'react';
-import {TaskForm} from './TaskFormProps';
-import {TaskList} from './TaskListProps';
-import { TaskAppState, Action } from './IUser';
+import React, { useState, useRef } from 'react';
 
-const initialState: TaskAppState = {
-    tasks: []
-};
+ export const Stopwatch: React.FC = () => {
+    const [time, setTime] = useState<number>(0);
+    const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-function reducer(state: TaskAppState, action: Action): TaskAppState {
-    switch (action.type) {
-        case 'add':
-            return { ...state, tasks: [...state.tasks, { id: Date.now(), text: action.payload, completed: false }] };
-        case 'delete':
-            return { ...state, tasks: state.tasks.filter(task => task.id !== action.payload) };
-        case 'toggle':
-            return {
-                ...state,
-                tasks: state.tasks.map(task =>
-                    task.id === action.payload ? { ...task, completed: !task.completed } : task
-                )
-            };
-        default:
-            return state;
-    }
-}
+    const handleStart = () => {
+        if (intervalRef.current !== null) return; // Prevents starting multiple intervals
+        intervalRef.current = setInterval(() => {
+            setTime((prevTime) => prevTime + 1);
+        }, 1000); // Updates time every second
+    };
 
-export function TaskApp() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const handleStop = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        intervalRef.current = null;
+    };
 
-    const handleAddTask = useCallback((text: string) => {
-        dispatch({ type: 'add', payload: text });
-    }, []);
-
-    const handleDeleteTask = useCallback((id: number) => {
-        dispatch({ type: 'delete', payload: id });
-    }, []);
-
-    const handleToggleTask = useCallback((id: number) => {
-        dispatch({ type: 'toggle', payload: id });
-    }, []);
-
-    const completedCount = useMemo(() => state.tasks.filter(task => task.completed).length, [state.tasks]);
+    const handleReset = () => {
+        if (intervalRef.current) clearInterval(intervalRef.current);
+        intervalRef.current = null;
+        setTime(0); // Resets time to zero
+    };
 
     return (
         <div>
-            <h1>Task List</h1>
-            <TaskForm onAddTask={handleAddTask} />
-            <TaskList tasks={state.tasks} onDelete={handleDeleteTask} onToggle={handleToggleTask} />
-            <div>Completed Tasks: {completedCount}</div>
+            <h1>{time} seconds</h1>
+            <button onClick={handleStart}>Start</button>
+            <button onClick={handleStop}>Stop</button>
+            <button onClick={handleReset}>Reset</button>
         </div>
     );
-}
+};
+
+export default Stopwatch;

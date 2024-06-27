@@ -1,7 +1,7 @@
 
 
 import './App.css'
-import { TaskApp } from './components/estado'
+import { Stopwatch } from './components/estado'
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
         </a>
       </div> */}
       
-      <TaskApp/>
+      <Stopwatch/>
       
     </>
   )
