@@ -1,35 +1,27 @@
 import React, { useState, useRef } from 'react';
 
- export const Stopwatch: React.FC = () => {
-    const [time, setTime] = useState<number>(0);
-    const intervalRef = useRef<NodeJS.Timeout | null>(null);
+export const ImagePreviewer = () => {
+  const [imageSrc, setImageSrc] = useState('');
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleStart = () => {
-        if (intervalRef.current !== null) return; // Prevents starting multiple intervals
-        intervalRef.current = setInterval(() => {
-            setTime((prevTime) => prevTime + 1);
-        }, 1000); // Updates time every second
-    };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files![0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        setImageSrc(e.target!.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
-    const handleStop = () => {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        intervalRef.current = null;
-    };
-
-    const handleReset = () => {
-        if (intervalRef.current) clearInterval(intervalRef.current);
-        intervalRef.current = null;
-        setTime(0); // Resets time to zero
-    };
-
-    return (
-        <div>
-            <h1>{time} seconds</h1>
-            <button onClick={handleStart}>Start</button>
-            <button onClick={handleStop}>Stop</button>
-            <button onClick={handleReset}>Reset</button>
-        </div>
-    );
+  return (
+    <div>
+        <p>practica 2</p>
+      <h2> previsualizador de imagen</h2>
+      <input type="file" ref={fileInputRef} onChange={handleFileChange} accept="image/*" />
+      {imageSrc && <img src={imageSrc} alt="Preview" style={{ width: '100%', height: 'auto' }} />}
+      
+    </div>
+  );
 };
-
-export default Stopwatch;
